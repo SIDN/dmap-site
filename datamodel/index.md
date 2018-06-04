@@ -344,7 +344,7 @@ tls_issuer_chain | Issuer chain from certificate to the root |
 tls_root_trusted | True if the root certificate is not trusted | 
 tls_cert_hash | SHA-256 hash of the certificate | 
 
-####TLS types
+#### TLS types
 
  __Value__ | __Description__
 --- | --- | ---
@@ -354,7 +354,7 @@ tls_cert_hash | SHA-256 hash of the certificate |
 3 | Organization validation | 
 4 | Extended validation |
 
-####TLS validity
+#### TLS validity
 
  __Value__ | __Description__
 --- | --- | ---
