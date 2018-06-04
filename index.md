@@ -13,13 +13,13 @@ More details on our [research paper](paper.pdf).
 
  We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
 
-Please check our [demo page](demo), which provides both data and data model.
+Please check our [demo page](demo/), which provides both data and data model.
 
  
 
 ### Open for researchers, code and binaries
  
-We have developed [Dmap]((http://Dmap.sidnlabs.nl)) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
+We have developed [Dmap](http://Dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
 
 We are more than happy to make Dmap availble for researchers, both code and binaries. We just would not like to be used commercially. 
 
