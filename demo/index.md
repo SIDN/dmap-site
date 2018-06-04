@@ -6,8 +6,8 @@
 
 ## Goal: 
   * [DMap][1] is our multi-application measurement tool.
-  * In this document, we present the results produced by [DMap][1] after crawling Alexa 1M domains.
-  * In this way, users can reproduce Table III from our [DMap paper][2] , and understand how to do measurement analysis using simple SQL code.
+  * In this document, we present the results produced by [Dmap][1] after crawling Alexa 1M domains.
+  * In this way, users can reproduce Table III from our [DMap paper](../paper.pdf) , and understand how to do measurement analysis using simple SQL code.
 
   
   
@@ -346,3 +346,9 @@ from smtp_hosts
 [2]: https://www.sidnlabs.nl/downloads/papers-reports/dmap-tma2018.pdf
 [3]: https://www.postgresql.org/
 [4]: https:///dmap.sidnlabs.nl/demo/smtp-stats.py
+
+
+
+Copyright (C) 2018  SIDN Labs ![alt text][logo]
+
+[logo]: http://entrada.sidnlabs.nl/assets/logo-sidn-labs-50px.png "Copyright (C) 2018  
