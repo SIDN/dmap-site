@@ -9,11 +9,11 @@ Dmap is multi-application crawler that *reduces the complexity* in both executin
    
 More details on our [research paper](paper.pdf).
 
-## Check our [demo page](demo/)
+## Check our [demo data page](demo/)
 
  We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
 
-Please check our [demo page](demo/), which provides both data and data model.
+Please check our [demo data page](demo/), which provides both data and data model.
 
  
 
