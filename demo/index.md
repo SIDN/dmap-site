@@ -351,4 +351,4 @@ from smtp_hosts
 
 Copyright (C) 2018  SIDN Labs ![alt text][logo]
 
-[logo]: http://entrada.sidnlabs.nl/assets/logo-sidn-labs-50px.png "Copyright (C) 2018  
+[logo]: http://entrada.sidnlabs.nl/assets/logo-sidn-labs-50px.png 
