@@ -1,4 +1,4 @@
-# [Dmap: Domain Name Ecosystem Mapper](http://Dmap.sidnlabs.nl)
+# [Dmap: Domain Name Ecosystem Mapper](http://dmap.sidnlabs.nl)
 
 
 
