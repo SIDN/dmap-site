@@ -21,7 +21,7 @@ Please check our [demo page](demo/), which provides both data and data model.
  
 We have developed [Dmap](http://Dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
 
-We are more than happy to make Dmap availble for researchers, both code and binaries. We just don't  want it be used commercially. 
+We are more than happy to make Dmap availble for researchers, both code and binaries. We just would not like it to be used commercially. 
 
 Therefore, if you are a reseracher, just do the following:
   1. Send a request to sidnlabs at sidn .nl stating how you intend to use Dmap *using your university/resarch institution* e-mail address. 
