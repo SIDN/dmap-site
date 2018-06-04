@@ -7,7 +7,7 @@
 ## Goal: 
   * [DMap][1] is our multi-application measurement tool.
   * In this document, we present the results produced by [Dmap][1] after crawling Alexa 1M domains.
-  * In this way, users can reproduce Table III from our [DMap paper](../paper.pdf) , and understand how to do measurement analysis using simple SQL code.
+  * In this way, users can reproduce Table III from our [Dmap paper](../paper.pdf) , and understand how to do measurement analysis using simple SQL code.
 
   
   
@@ -37,7 +37,7 @@ $ psql DMapdb < pg_dump_export_20180227
    * From this point onwards, we show the results of Table III in the paper, and which queries/python code we use to obtain these numbers
    
 
-#### 2.1 DNS results from Table III in [DMap paper][2]:
+#### 2.1 DNS results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -140,7 +140,7 @@ select count(domainname) from  crawl_result_dns
 
 ## 3. HTTP
 
-### 3.1 HTTP results from Table III in [DMap paper][2]:
+### 3.1 HTTP results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -224,7 +224,7 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 ## 4.TLS
 
 
-### 4.1 DNS results from Table III in [DMap paper][2]:
+### 4.1 DNS results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -345,7 +345,7 @@ from smtp_hosts
 [1]: https://dmap.sidnlabs.nl
 [2]: https://www.sidnlabs.nl/downloads/papers-reports/dmap-tma2018.pdf
 [3]: https://www.postgresql.org/
-[4]: https:///dmap.sidnlabs.nl/demo/smtp-stats.py
+[4]: https:///dmap.sidnlabs.nl/demo/smtpstats.py
 
 
 
