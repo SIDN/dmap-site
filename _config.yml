@@ -1,5 +1,5 @@
 theme: jekyll-theme-leap-day
-title: "[Dmap by SIDN Labs](http://demap.sidnlabs.nl)"
+title: "Dmap by SIDN Labs"
 #baseurl: "http://dmap.sidnlabs.nl"
 description: "Mapping the DNS ecosystem"
 
@@ -11,6 +11,18 @@ description: "Mapping the DNS ecosystem"
 
 logo: "/img/map2.jpg"
 
-github:
-  demo_data: "demo/"
-  data_model: "datamodel"
+
+
+############# GITHUB BUTTON #############
+
+# inserts github link in top nav bar (recommended)
+github_button_location_top_navbar: false
+
+# inserts github link below page title
+github_button_location_below_title: false
+
+# inserts github link at bottom of page (least visible)
+github_button_location_page_bottom: false
+
+# link to your github repo. replace <organization> (if applicable) and <repo name> and <branch name>. Note that the github link will be {{site.github_editme_path}}/{{page.path}}
+github_editme_path: https://github.com/SIDN/emap
