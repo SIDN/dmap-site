@@ -15,12 +15,13 @@
 ## Requirements:
   * [PostgreSQL DB][3]
   * Any SQL client that can connect to postgresql
+  * Check the data model to understand the results on the [Data model page](../datamodel/)  
 
 ## 1. Download the data and set it up 
 
    * You can download the 1 million scan results from [this link](https://dmap.sidnlabs.nl/demo/pg_dump_export_20180227.zip).
    * Then install it at your already configured [PostgreSQL DB][3] using the following command:
-   * Check the data model to understand the results on the [Data model page](../datamodel/)  
+
 
 ```bash
 # unzip file

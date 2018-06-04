@@ -29,12 +29,14 @@ Therefore, if you are a reseracher, just do the following:
   1. Once you send us back, we will quickly process that and give it access to our  [GitHub Repository](https://github.com/SIDN/emap), so you can clone, improve, and use as you want.
      * It includes the complete documentation as well
  
-## Why Dmap?
-  
+ 
+## From measurements to SQL
+
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on reserach questions.
   
   Dmap is intended to be an enabling platform that free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and provides a SQL interface o the data. 
   
+  Check out [our data model page](datamodel/) data shows how the results are stored in the SQL database.
   
 ##  More information
 For a full description, please [download our research paper (PDF).](paper.pdf)
