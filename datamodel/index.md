@@ -1,13 +1,13 @@
 
-#Data Model
+# Data Model
 
 This section contains a description of the relational data model used by Dmap. There are tables that contain reference and configuration information and tables that contain crawler results.  
 
-##Result data   
+## Result data   
 
 Most of the result tables use the following primary key \<domainname,crawl_run,ip_version\>. If both verion 4 and 6 are enabled then every domain name crawl will create 2 rows in the result table, 1 for IPv4 and 1 for IPv6.  
 
-###crawl_result_domain
+### crawl_result_domain
 Table __crawl_result_domain__ contain information related to the domain name itself. This dat is calculated from the name or is supplied to the crawler using the crawler batch input file.  
 
 __Attribute__ | __Description__
@@ -21,8 +21,8 @@ crawl_date | Date when domain was crawled |
 len | length of domain name | 
 tld | tld part of domain name | 
 
-\newpage
-###crawl_result_dns
+
+### crawl_result_dns
 Table __crawl_result_dns__ contains information from the DNS.  
 
 __Attribute__ | __Description__
@@ -58,7 +58,7 @@ dns_cdn_cloudflare | True if Cloudflare service is used  |
 dns_cdn_akamai | True if Akamai service is used | 
 
 
-####JSON IP address   
+#### JSON IP address   
 
 __Attribute__ | __Description__
 --- | --- | ---
@@ -78,7 +78,7 @@ __example__
 }]
 ```
 
-####JSON Name server
+#### JSON Name server
 
 A JSON list of name server objects, each name server object has a list of IP addresses linked to the name server.  
 
@@ -121,7 +121,7 @@ __example__
 }]  
 ```
 
-####JSON DMARC
+#### JSON DMARC
 
 A JSON object containing attributes from the DMARC TXT record.
 The "p" and "v" attrites are required, for a complete list of available DMARC attributes, see [IETF RFC 7489 DMARC Policy Record](https://tools.ietf.org/html/rfc7489#section-6.1)   
@@ -144,7 +144,7 @@ __example__
 }
 ```
 
-####JSON SPF
+#### JSON SPF
 The __dns_spf__ attribute contains a JSON list containing a string for each found SPF TXT record. for the SPF format see [IETF RFC 7208 SPF Records](https://tools.ietf.org/html/rfc7208#section-3)   
 
 __example__   
@@ -170,8 +170,8 @@ __SPF result__ | __Description__
 6 | Temporary error  | 
 
 
-\newpage
-###crawl_result_http
+
+### crawl_result_http
 The table __crawl_result_http__ contains __HTTP__ and __HTML__ results. The attribute values are extracted the last web page that was crawled.
 
 __Attribute__ | __Description__
@@ -245,7 +245,7 @@ bus_phone_no | Telephone number  |
 bus_address | Visiting or Postal address  | 
 
 
-####JSON loadtime
+#### JSON loadtime
 The crawler may be redirected while crawling a domain name, this JSON object contains the following attributes for every crawledcURL.  
 
 - URL
@@ -278,7 +278,7 @@ __example__
 }]
 ```
 
-####JSON HTTP headers
+#### JSON HTTP headers
 All HTTP headers are in a JSON object where the key is the header name and the value the header value.  
 
 __example__   
@@ -299,8 +299,8 @@ __example__
 ```
 
 
-\newpage
-###crawl_result_tls
+ 
+### crawl_result_tls
 The table __crawl_result_tls__ contains information about the TLS certificate.  
 
 __Attribute__ | __Description__
@@ -362,10 +362,8 @@ tls_cert_hash | SHA-256 hash of the certificate |
 1 | Expired | 
 2 | Not valid yet | 
 
-
-
-\newpage
-###crawl_result_smtp
+ 
+### crawl_result_smtp
 The table __crawl_result_smtp__ contains the SMTP crawler results.
 
 __Attribute__ | __Description__
@@ -383,7 +381,7 @@ smtp_starttls | True if all mail server support STARTTLS |
 smtp_hosts | Mail server details, __[see JSON info](#json-smtp-host)__ |
 
 
-####JSON SMTP host
+#### JSON SMTP host
 Details for each SMTP host found are written to a list of JSON objects. Each JSON object represents a mail server found in the DNS.  
 
 __Attribute__ | __Description__
@@ -415,8 +413,7 @@ __example__
 ```
 
 
-\newpage
-###crawl_result_screenshot
+### crawl_result_screenshot
 The table __crawl_result_screenshot__ contains the Screenshot crawler results.   
 
 __Attribute__ | __Description__
@@ -437,7 +434,7 @@ scr_width | Width (pixels) of the image |
 scr_height | Height (pixels) of the image |
 scr_size | Size (bytes) of the image |
 
-###Crawler status
+### Crawler status
 
 The __crawl_status__ attribute in the result tables contains a integer value, see below for a description of each crawl_status value.
 
@@ -464,7 +461,6 @@ __Value__ | __Description__
 98| Internal classifier error | 
 99| Internal crawler error | 
 100| Other | 
-
 
 
 Copyright (C) 2018  SIDN Labs ![alt text][logo]
