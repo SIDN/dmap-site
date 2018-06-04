@@ -9,7 +9,7 @@ Dmap is multi-application crawler that *reduces the complexity* in both executin
    
 More details on our [research paper](paper.pdf).
 
-## Check our demo!
+## Check our [demo page](demo/)
 
  We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
 
@@ -29,7 +29,7 @@ Therefore, if you are a reseracher, just do the following:
   1. Once you send us back, we will quickly process that and give it access to our  [GitHub Repository](https://github.com/SIDN/emap), so you can clone, improve, and use as you want.
      * It includes the complete documentation as well
  
-## Why DMap?
+## Why Dmap?
   
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on reserach questions.
   
@@ -44,3 +44,8 @@ Wullink, M., Moura, G.C. M., Hesselman, C.: Dmap: Automating Domain Name
 Ecosystem Measurements and Applications. In: IFIP/IEEE  Network 
 Traffic Measurement and Analysis Conference (TMA 2018).
 Vienna, Austria, 26-29 June  2018.
+``` 
+
+Copyright (C) 2018  SIDN Labs ![alt text][logo]
+
+[logo]: http://entrada.sidnlabs.nl/assets/logo-sidn-labs-50px.png "Copyright (C) 2018  SIDN Labs"
