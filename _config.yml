@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+theme: jekyll-theme-leap-day
 title: "Dmap by SIDN Labs"
 #baseurl: "http://dmap.sidnlabs.nl"
 description: "Mapping the DNS ecosystem"
