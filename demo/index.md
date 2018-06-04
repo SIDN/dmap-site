@@ -1,13 +1,14 @@
-# DMap Alexa 1M dataset and analysis
+# Dmap Alexa 1M dataset and analysis
   
 ## Notice:
 
   * Commit date: Tue Feb 27 11:45:47 UTC 2018
 
 ## Goal: 
-  * [DMap][1] is our multi-application measurement tool.
+  * [Dmap][1] is our multi-application measurement tool.
   * In this document, we present the results produced by [Dmap][1] after crawling Alexa 1M domains.
   * In this way, users can reproduce Table III from our [Dmap paper](../paper.pdf) , and understand how to do measurement analysis using simple SQL code.
+ 
 
   
   
@@ -19,7 +20,7 @@
 
    * You can download the 1 million scan results from [this link](https://dmap.sidnlabs.nl/demo/pg_dump_export_20180227.zip).
    * Then install it at your already configured [PostgreSQL DB][3] using the following command:
-   
+   * Check the data model to understand the results on the [Data model page](../datamodel/)  
 
 ```bash
 # unzip file
@@ -345,7 +346,7 @@ from smtp_hosts
 [1]: https://dmap.sidnlabs.nl
 [2]: https://www.sidnlabs.nl/downloads/papers-reports/dmap-tma2018.pdf
 [3]: https://www.postgresql.org/
-[4]: https:///dmap.sidnlabs.nl/demo/smtpstats.py
+[4]: https://sidn.github.io/dmap-site/demo/smtpstats.py
 
 
 
