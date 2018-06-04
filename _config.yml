@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
-title: "Dmap: Domain Name Ecosystem Mapper"
-#baseurl: "http://dmap.sidnlabs.nl"
+title: "Dmap by SIDN Labs"
+baseurl: "http://dmap.sidnlabs.nl"
 description: "Mapping the DNS ecosystem"
 
 # List of links in the navigation bar
