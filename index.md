@@ -9,7 +9,7 @@ Dmap is multi-application crawler that *reduces the complexity* in both executin
    
 More details on our [research paper](paper.pdf).
 
-### Check our demo!
+## Check our demo!
 
  We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
 
@@ -17,7 +17,7 @@ Please check our [demo page](demo/), which provides both data and data model.
 
  
 
-### Open for researchers, code and binaries
+## Open for researchers, code and binaries
  
 We have developed [Dmap](http://Dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
 
@@ -29,14 +29,14 @@ Therefore, if you are a reseracher, just do the following:
   1. Once you send us back, we will quickly process that and give it access to our  [GitHub Repository](https://github.com/SIDN/emap), so you can clone, improve, and use as you want.
      * It includes the complete documentation as well
  
-### Why DMap?
+## Why DMap?
   
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on reserach questions.
   
   Dmap is intended to be an enabling platform that free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and provides a SQL interface o the data. 
   
   
-###  More information
+##  More information
 For a full description, please [download our research paper (PDF).](paper.pdf)
 
 ```
