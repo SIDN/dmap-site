@@ -9,7 +9,7 @@ Dmap is multi-application crawler that *reduces the complexity* in both executin
    
 More details on our [research paper](paper.pdf).
 
-##[Demo data page](demo/)
+## [Demo data page](demo/)
 
  We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
 Please check our [demo data page](demo/), which provides both data and data model.
@@ -28,13 +28,13 @@ Therefore, if you are a reseracher, just do the following:
      * It includes the complete documentation as well
  
  
-##   From measurements to SQL
+###   From measurements to SQL
 
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on reserach questions.
   
   Dmap is intended to be an enabling platform that free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and provides a SQL interface o the data. 
   
-  Check out [our data model page](datamodel/) data shows how the results are stored in the SQL database.
+  Want to give at try? Check our [demo](demo/) page and the  [our data model page](datamodel/) data shows how the results are stored in the SQL database.
   
 ##  More information
 For a full description, please [download our research paper (PDF).](paper.pdf)
