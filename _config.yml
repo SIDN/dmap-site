@@ -11,3 +11,6 @@ description: "Mapping the DNS ecosystem"
 
 logo: "/img/map2.jpg"
 
+github:
+  demo_data: "demo/"
+  data_model: "datamodel"
