@@ -1,7 +1,7 @@
 theme: jekyll-theme-minimal
 title: "DMAP: Domain Name Ecosystem Mapper"
 #baseurl: "http://dmap.sidnlabs.nl"
-#description: "DMAP"
+description: "DMAP"
 
 # List of links in the navigation bar
 #navbar-links:
@@ -9,4 +9,5 @@ title: "DMAP: Domain Name Ecosystem Mapper"
   #Research Paper:
   #Demo: "/demo/"
 
-avatar: "/img/map.jpg"
+logo: "/img/map2.jpg"
+
