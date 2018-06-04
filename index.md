@@ -7,16 +7,15 @@ Dmap is multi-application crawler that *reduces the complexity* in both executin
    1. *Converts* the raw measurement data and store into a 166-features unified SQL data model
    3. *Provides a SQL interface* to  the analysis, so analysts do not have to worry about different raw measurement formats
    
-More details on our [research paper]("paper.pdf").
+More details on our [research paper](paper.pdf).
 
 ### Check our demo!
 
- We have a database dump from Alexa 1M domains, which we cover  our [research paper]("paper.pdf").
+ We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
 
-Please check our [demo page]("demo"), which provides both data and data model.
+Please check our [demo page](demo), which provides both data and data model.
 
  
-
 
 ### Open for researchers, code and binaries
  
@@ -38,11 +37,10 @@ Therefore, if you are a reseracher, just do the following:
   
   
 ###  More information
-For a full description, please [download our research paper (PDF).]("paper.pdf")
+For a full description, please [download our research paper (PDF).](paper.pdf)
 
-```verbatim
+```
 Wullink, M., Moura, G.C. M., Hesselman, C.: Dmap: Automating Domain Name 
 Ecosystem Measurements and Applications. In: IFIP/IEEE  Network 
 Traffic Measurement and Analysis Conference (TMA 2018).
 Vienna, Austria, 26-29 June  2018.
-```
