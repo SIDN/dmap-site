@@ -20,7 +20,7 @@ Please check our [demo data page](demo/), which provides both data and data mode
 
 ## How to get it
  
-We have developed [Dmap](http://Dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
+We have developed [Dmap](http://dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
 
 We are more than happy to make Dmap availble for researchers, both code and binaries. We just would not like it to be used commercially. 
 
@@ -31,8 +31,7 @@ Therefore, if you are a reseracher, just do the following:
      * It includes the complete documentation as well
  
  
-###   From raw measurements to SQL analysis
-
+###   Data Model (from raw to SQL)
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on reserach questions.
   
   Dmap is intended to be an enabling platform that free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and provides a SQL interface o the data. 
