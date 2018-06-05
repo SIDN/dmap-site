@@ -100,12 +100,12 @@
 ![Orbis Terrarum Nova et Accuratissima Tabula, by [Nicolaes Visscher](https://en.wikipedia.org/wiki/Nicolaes_Visscher_I), 1658. Source:[ Wikipedia](https://en.wikipedia.org/wiki/File:Orbis_Terrarum_Nova_et_Accuratissima_Tabula_by_Nicolaes_Visscher,_1658.jpg)](img/map2.jpg)
 
 
-Dmap is multi-application crawler that *reduces the complexity* in both executing Internet measurements and analyzing their results.
-It takes as input a list domain names (entire DNS zones even), and:
-   1. *Crawls* domains for DNS, HTTP, HTTPS, TLS, SMTP and a generates a screenshot of a webpage (if it's available)
-   1. *Converts* the raw measurement data and store into a 166-features unified SQL data model, so users can easily and convienlty analyze the results using SQL.
+Dmap is multi-application crawler that *reduces the complexity* in both executing Internet measurements and analyzing results.  
+Dmap uses a list domain names (scalable to many millions), and:
+   1. *Crawls* domains for DNS, HTTP, TLS, SMTP and a creates a screenshot of a webpage (if it's available)
+   1. *Converts* the raw measurement data and stores this into a 166-features unified SQL data model, so users can easily and convienlty analyze the results using SQL.
 
-We have been using Dmap since December 2017 in the analysis of the .nl DNS zone.
+We have been using Dmap since 2017 to analyze the .nl DNS zone.
 
           Just run it and query it. More details on our [research paper](paper.pdf).
 
@@ -118,26 +118,27 @@ We have been using Dmap since December 2017 in the analysis of the .nl DNS zone.
 
 # How to get it
 
-We have developed [Dmap](http://dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
-We are more than happy to make Dmap available  for researchers, both code and binaries. We just would not like it to be used commercially.
+We have developed [Dmap](http://dmap.sidnlabs.nl) as a research project at [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
+We are more than happy to make Dmap available under an academic license, both code and binaries, for academic use.
+This license does not allow Dmap to be used for commercial puposes.
 
           Therefore, if **you are a researcher**, just:
-          *  Fill the [following form][5] and you will receive an e-mail from us with the instructions.
-          * *Notice*: we will start sharing the code on June 25th, 2018.
+          *  Fill the [following form][5] and you will receive an e-mail from us with instructions.
+          * *Notice*: we will start sharing the code on Github on June 25th, 2018.
 
 # [Demo data page](demo.html)
 
 
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on research questions.
 
-  [Dmap](http://dmap.sidnlabs.nl) is intended to be an enabling platform that free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and provides a SQL interface o the data.
+  [Dmap](http://dmap.sidnlabs.nl) is intended to be an enabling platform and is designed to free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and stores the data in an easy to use SQL database.  
 
- We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
-   Want to give at try? Check our [data demo](demo.html) page and the  [our data model page](datamodel.html) data shows how the results are stored in the SQL database.
+ We have a Dmap database dump for the Alexa 1M domains list, which we cover in our [research paper](paper.pdf).
+   Want to give at try? Check the [data demo](demo.html) and the [data model](datamodel.html) for a description of the datamodel.  
 
 #  [Research paper](paper.pdf)
 
-For a full description, please [download our research paper (PDF).](paper.pdf)
+For a full description of Dmap, please download our [research paper (PDF).](paper.pdf)
 
 ```verbatim
 Wullink, M., Moura, G.C. M., Hesselman, C.: Dmap:Automating Domain Name Ecosystem
