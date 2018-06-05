@@ -15,8 +15,7 @@ Just run it and query it. More details on our [research paper](paper.pdf).
 
 ## How to get it
  
-We have developed [Dmap](http://dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.
-
+We have developed [Dmap](http://dmap.sidnlabs.nl) as a project with [SIDN Labs](https://sidnlabs.nl), the research arm of [SIDN](https://sidn.nl), the .nl top-level domain registry.K
 We are more than happy to make Dmap availble for researchers, both code and binaries. We just would not like it to be used commercially. 
 
 Therefore, if you are a researcher, just do the following:
