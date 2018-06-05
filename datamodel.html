@@ -108,7 +108,7 @@ Most of the result tables use the following primary key \<domainname,crawl_run,i
 Table __crawl_result_domain__ contain information related to the domain name itself. This dat is calculated from the name or is supplied to the crawler using the crawler batch input file.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---
 domainname | input domain name |
 registrar_id | Id of the registrar |
 create_date | Date domain name was created |
@@ -123,7 +123,7 @@ tld | tld part of domain name |
 Table __crawl_result_dns__ contains information from the DNS.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---
 domainname | input domain name |
 crawl_run | Crawl run identifier |
 ip_version | IP version used, 4 or 6 |
@@ -158,7 +158,7 @@ dns_cdn_akamai | True if Akamai service is used |
 #### JSON IP address
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---
 geoLocation | Country according to MaxMind GeoIP database  |
 asnOwner | ASN owner according to MaxMind GeoIP database  |
 asn | AS according to MaxMind GeoIP database  |
@@ -180,7 +180,7 @@ __example__
 A JSON list of name server objects, each name server object has a list of IP addresses linked to the name server.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---
 ok | Number of name server that are responsive and authoritative  |
 name | hostname of the name server  |
 asn | AS according to MaxMind GeoIP database  |
@@ -224,7 +224,7 @@ A JSON object containing attributes from the DMARC TXT record.
 The "p" and "v" attrites are required, for a complete list of available DMARC attributes, see [IETF RFC 7489 DMARC Policy Record](https://tools.ietf.org/html/rfc7489#section-6.1)
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---
 p | Policy to use for flagged email |
 v | Always "DMARC1" |
 rua | Addresses for aggregate feedback |
@@ -257,7 +257,7 @@ ip4:85.17.199.0/24 ip4:95.211.71.0/24 ip6:2a02:40c0::/29 -all
 The __dns_spf_result__ attribute contains a integer value. this value indicates the validation status of the SPF record.
 
 __SPF result__ | __Description__
---- | --- | ---
+--- | ---
 0 | None  |
 1 | Pass |
 2 | Fail |
@@ -272,7 +272,7 @@ __SPF result__ | __Description__
 The table __crawl_result_http__ contains __HTTP__ and __HTML__ results. The attribute values are extracted the last web page that was crawled.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---  
 domainname | input domain name |
 url | input URL, domainname and URL are mutally exclusive |
 crawl_run | Crawl run identifier |
@@ -401,7 +401,7 @@ __example__
 The table __crawl_result_tls__ contains information about the TLS certificate.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---  
 domainname | input domain name |
 crawl_run | Crawl run identifier |
 ip_version | IP version used, 4 or 6 |
@@ -444,7 +444,7 @@ tls_cert_hash | SHA-256 hash of the certificate |
 #### TLS types
 
  __Value__ | __Description__
---- | --- | ---
+--- | ---  
 0 | Unknown |
 1 | Self signed |
 2 | Domain validation  |
@@ -454,7 +454,7 @@ tls_cert_hash | SHA-256 hash of the certificate |
 #### TLS validity
 
  __Value__ | __Description__
---- | --- | ---
+--- | ---  
 0 | Ok |
 1 | Expired |
 2 | Not valid yet |
@@ -464,7 +464,7 @@ tls_cert_hash | SHA-256 hash of the certificate |
 The table __crawl_result_smtp__ contains the SMTP crawler results.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | ---  
 domainname | input domain name |
 crawl_run | Crawl run identifier |
 ip_version | IP version used, 4 or 6 |
@@ -482,7 +482,7 @@ smtp_hosts | Mail server details, __[see JSON info](#json-smtp-host)__ |
 Details for each SMTP host found are written to a list of JSON objects. Each JSON object represents a mail server found in the DNS.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | --- 
 name | Name (FQDN) of the mail server |
 priority | MX priority of the server |
 smtpHostIPs | Mail server IPs and connection info per IP|
@@ -514,7 +514,7 @@ __example__
 The table __crawl_result_screenshot__ contains the Screenshot crawler results.
 
 __Attribute__ | __Description__
---- | --- | ---
+--- | --- 
 domainname | input domain name |
 crawl_run | Crawl run identifier |
 ip_version | IP version used, 4 or 6 |
@@ -560,9 +560,7 @@ __Value__ | __Description__
 100| Other |
 
 
-Copyright (C) 2018  SIDN Labs ![alt text][logo]
-
-[logo]: http://entrada.sidnlabs.nl/assets/logo-sidn-labs-50px.png
+Copyright (C) 2018  SIDN Labs
 
 
       </markdeep>
