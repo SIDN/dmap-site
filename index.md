@@ -32,8 +32,7 @@ Therefore, if you are a reseracher, just do the following:
      * E-mail University/Research Center 
      * Github account (for activation)
   1. We will send you our academic license agreement (Modified Apache 2 License)
-  1. Once you send it back to us, we will quickly process that and give it access to our  [GitHub Repository](https://github.com/SIDN/emap), so you can clone, improve, and use as you want.
-     * It includes the complete documentation as well
+  1. Once you send it back to us, we will quickly process that and give it access to our  [GitHub Repository](https://github.com/SIDN/emap), so you can clone it, improve it, and use in your research.
  
  
 ##  [Data Model (from raw to SQL)](datamodel/)
