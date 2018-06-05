@@ -1,16 +1,17 @@
 # [Dmap: Domain Name Ecosystem Mapper](http://dmap.sidnlabs.nl)
 
+![Orbis Terrarum Nova et Accuratissima Tabula by Nicolaes Visscher, 1658, https://en.wikipedia.org/wiki/File:Orbis_Terrarum_Nova_et_Accuratissima_Tabula_by_Nicolaes_Visscher,_1658.jpg](img/map2.jpg)
 
 
-![alt text](img/map2.jpg)
+Dmap is multi-application crawler that *reduces the complexity* in both executing Internet measurements and analyzing its results.
 
 
-Dmap is multi-application crawler that *reduces the complexity* in both executing and analyzing measurement data. Taking as input a list of domain names (entire DNS zones even), it does:
-   1. *Crawls* the domain for DNS, HTTP, HTTPS, TLS, SMTP and a screenshot (if they are available)
+Dmap takes as input a list domain names (entire DNS zones even), and:
+   1. *Crawls* domains for DNS, HTTP, HTTPS, TLS, SMTP and a screenshot 
    1. *Converts* the raw measurement data and store into a 166-features unified SQL data model
-   3. *Provides a SQL interface* to  the analysis, so analysts do not have to worry about different raw measurement formats
-   
-More details on our [research paper](paper.pdf).
+ 
+
+Just ran it and query it. More details on our [research paper](paper.pdf).
 
 ## [Demo data page](demo/)
 
@@ -25,13 +26,17 @@ We have developed [Dmap](http://dmap.sidnlabs.nl) as a project with [SIDN Labs](
 We are more than happy to make Dmap availble for researchers, both code and binaries. We just would not like it to be used commercially. 
 
 Therefore, if you are a reseracher, just do the following:
-  1. Send a request to sidnlabs at sidn .nl stating how you intend to use Dmap *using your university/resarch institution* e-mail address. 
+  1. Send a request to sidnlabs at sidn .nl the follow information:
+     * Name
+     * University/Research Center
+     * E-mail University/Research Center 
+     * Github account (for activation)
   1. We will send you our academic license agreement (Modified Apache 2 License)
   1. Once you send it back to us, we will quickly process that and give it access to our  [GitHub Repository](https://github.com/SIDN/emap), so you can clone, improve, and use as you want.
      * It includes the complete documentation as well
  
  
-###   Data Model (from raw to SQL)
+##  [Data Model (from raw to SQL)](datamodel/)
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on reserach questions.
   
   Dmap is intended to be an enabling platform that free researchers from the complexity of measurements and parsing complex data formats; rather, it automates the measurements and provides a SQL interface o the data. 
@@ -39,12 +44,13 @@ Therefore, if you are a reseracher, just do the following:
   Want to give at try? Check our [demo](demo/) page and the  [our data model page](datamodel/) data shows how the results are stored in the SQL database.
   
 ##  More information
+
 For a full description, please [download our research paper (PDF).](paper.pdf)
 
 ```
-Wullink, M., Moura, G.C. M., Hesselman, C.: Dmap: Automating Domain Name 
-Ecosystem Measurements and Applications. In: IFIP/IEEE  Network 
-Traffic Measurement and Analysis Conference (TMA 2018).
+Wullink, M., Moura, G.C. M., Hesselman, C.: Dmap: Automating Domain Name
+Ecosystem Measurements and Applications. In: IFIP/IEEE  Network Traffic 
+Measurement and Analysis Conference (TMA 2018). 
 Vienna, Austria, 26-29 June  2018.
 ``` 
 
