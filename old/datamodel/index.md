@@ -1,0 +1,468 @@
+
+# Data Model
+
+This section contains a description of the relational data model used by Dmap. There are tables that contain reference and configuration information and tables that contain crawler results.  
+
+## Result data   
+
+Most of the result tables use the following primary key \<domainname,crawl_run,ip_version\>. If both verion 4 and 6 are enabled then every domain name crawl will create 2 rows in the result table, 1 for IPv4 and 1 for IPv6.  
+
+### crawl_result_domain
+Table __crawl_result_domain__ contain information related to the domain name itself. This dat is calculated from the name or is supplied to the crawler using the crawler batch input file.  
+
+__Attribute__ | __Description__
+--- | --- | ---
+domainname | input domain name | 
+registrar_id | Id of the registrar | 
+create_date | Date domain name was created | 
+age | The age (days) of the domain name | 
+crawl_run | reference to the run this domain was crawled | 
+crawl_date | Date when domain was crawled | 
+len | length of domain name | 
+tld | tld part of domain name | 
+
+
+### crawl_result_dns
+Table __crawl_result_dns__ contains information from the DNS.  
+
+__Attribute__ | __Description__
+--- | --- | ---
+domainname | input domain name | 
+crawl_run | Crawl run identifier | 
+ip_version | IP version used, 4 or 6 | 
+crawl_status | Status reflects if domain could be crawled successfully | 
+crawl_retries | Number of time crawler tried to crawl the domain | 
+dns_crawl_date | Time the domain was crawled | 
+dns_ip_address | IP geolocation and ASN details, __[see JSON format](#json-ip-address)__ | 
+dns_ip_count | Number of A records found for www.domain.tl or domain.tld | 
+dns_parked | True if the domain name is parked | 
+dns_parking_provider | Name of the parking provider | 
+dns_ns | List of name servers, __[see JSON format](#json-name-server)__ | 
+dns_ns_count | Number of NS records found | 
+dns_ns_avail | responsive and authoritative name servers | 
+dns_soa_mname | mname attribute from SOA record | 
+dns_soa_rname | rname attribute from SOA record  | 
+dns_soa_serial | serial attribute from SOA record  | 
+dns_soa_refresh | refresh attribute from SOA record  | 
+dns_soa_retry | retry attribute from SOA record  | 
+dns_soa_expiry | expiry attribute from SOA record  | 
+dns_soa_ttl | ttl attribute from SOA record  | 
+dns_goog_site_verify | Google domain verification TXT record | 
+dns_dmarc | DMARC details, __[see JSON format](#json-dmarc)__ | 
+dns_dmarc_syntax_ok | True if DMARC record is syntactically valid  | 
+dns_spf | SPF details ,__[see SPF details](#json-spf)__ | 
+dns_spf_result | SPF validation result ,__[see SPF details](#json-spf) | 
+dns_dkim | True DKIM selector is detected | 
+dns_office365 | True is TXT record for MS Office365 is found | 
+dns_cdn_cloudflare | True if Cloudflare service is used  | 
+dns_cdn_akamai | True if Akamai service is used | 
+
+
+#### JSON IP address   
+
+__Attribute__ | __Description__
+--- | --- | ---
+geoLocation | Country according to MaxMind GeoIP database  | 
+asnOwner | ASN owner according to MaxMind GeoIP database  | 
+asn | AS according to MaxMind GeoIP database  | 
+address | IP address  | 
+
+__example__   
+
+```
+[{
+    "geoLocation": "NL",
+    "asnOwner": "mijndomein.nl BV",
+    "asn": 59980,
+    "address": "2a00:4e40:1:1:0:0:2:20d"
+}]
+```
+
+#### JSON Name server
+
+A JSON list of name server objects, each name server object has a list of IP addresses linked to the name server.  
+
+__Attribute__ | __Description__
+--- | --- | ---
+ok | Number of name server that are responsive and authoritative  | 
+name | hostname of the name server  | 
+asn | AS according to MaxMind GeoIP database  | 
+addresses | List of IP address  | 
+addresses.geoLocation | Country according to MaxMind GeoIP database  | 
+addresses.asnOwner | ASN owner according to MaxMind GeoIP database   | 
+addresses.asn | AS according to MaxMind GeoIP database  | 
+addresses.address | IP address  | 
+
+__example__   
+
+```
+[{
+    "ok": 1,
+    "name": "ns1.metaregistrar.nl.",
+    "addresses": [
+        {
+            "geoLocation": "NL",
+            "asnOwner": "mijndomein.nl BV",
+            "asn": 59980,
+            "address": "2a00:4e40:1:1:0:0:2:1"
+        }
+    ]
+},{
+    "ok": 1,
+    "name": "ns2.metaregistrar.nl.",
+    "addresses": [
+        {
+            "geoLocation": "NL",
+            "asnOwner": "mijndomein.nl BV",
+            "asn": 59980,
+            "address": "2a00:4e40:2:1:0:0:2:1"
+        }
+    ]
+}]  
+```
+
+#### JSON DMARC
+
+A JSON object containing attributes from the DMARC TXT record.
+The "p" and "v" attrites are required, for a complete list of available DMARC attributes, see [IETF RFC 7489 DMARC Policy Record](https://tools.ietf.org/html/rfc7489#section-6.1)   
+
+__Attribute__ | __Description__
+--- | --- | ---
+p | Policy to use for flagged email | 
+v | Always "DMARC1" | 
+rua | Addresses for aggregate feedback | 
+ruf |  Addresses for which message-specific failure information | 
+
+__example__   
+
+```
+{
+    "p": "none",
+    "rua": "mailto:support@example.nl",
+    "ruf": "mailto:support@example.nl",
+    "v": "DMARC1"
+}
+```
+
+#### JSON SPF
+The __dns_spf__ attribute contains a JSON list containing a string for each found SPF TXT record. for the SPF format see [IETF RFC 7208 SPF Records](https://tools.ietf.org/html/rfc7208#section-3)   
+
+__example__   
+
+```
+[
+v=spf1 a mx include:spf.totaalholding.nl ip4:195.238.75.181 -all,
+v=spf1 ip4:85.17.242.0/24 ip4:195.238.74.0/23 ip4:31.186.168.0/21 ip4:185.56.144.0/22  
+ip4:85.17.199.0/24 ip4:95.211.71.0/24 ip6:2a02:40c0::/29 -all
+]
+```
+
+The __dns_spf_result__ attribute contains a integer value. this value indicates the validation status of the SPF record. 
+
+__SPF result__ | __Description__
+--- | --- | ---
+0 | None  | 
+1 | Pass | 
+2 | Fail | 
+3 | Soft fail  | 
+4 | Neutral  | 
+5 | Permanent error  | 
+6 | Temporary error  | 
+
+
+
+### crawl_result_http
+The table __crawl_result_http__ contains __HTTP__ and __HTML__ results. The attribute values are extracted the last web page that was crawled.
+
+__Attribute__ | __Description__
+--- | --- | ---
+domainname | input domain name | 
+url | input URL, domainname and URL are mutally exclusive | 
+crawl_run | Crawl run identifier | 
+ip_version | IP version used, 4 or 6 | 
+crawl_name | Domain name used for crawl (www of apex) | 
+crawl_domain | domain name that is one level beneath the public suffix | 
+crawl_url | Last URL crawled | 
+crawl_date | Date the crawl was executed | 
+crawl_status | Result status of crawl, __[see status codes](#crawler-status)__| 
+crawl_pages | \# of URLs crawled for domain name |
+crawl_retries | \# of tries performed by the crawler | 
+network_load_time | Total time (ms) spent crawling domain name | 
+network_load_time_all | Time spent (ms) crawling per URL, __[see JSON](#json-loadtime)__ | 
+http_status | HTTP result status | 
+html_version | HTML version | 
+html_title | HTML title | 
+html_generator | Value of generator META tag | 
+html_description | HTML description | 
+html_keywords | HTML description  | 
+http_bytes_len | Size of the response, excluding HTTP headers  | 
+headers_all | All HTTP headers, __[see JSON](#json-http-headers)__|
+server_os | Operating System of the server  | 
+server_engine | Web server of the server  | 
+server_engine_version | Web server version of the server  | 
+page_default | True if an Web server default page is found  | 
+page_suspended | True is the user account is suspended  | 
+page_placeholder | True if the page contains a placeholder  | 
+page_type | Web page type   | 
+page_lang | Language used on page  | 
+page_lang_multi | Multiple languguages detected  | 
+page_lang_prob | probability the language is correct  | 
+page_fingerprint | SHA-256 hash of HTML content  | 
+page_text | Text content extracted from HTML |
+page_src | Raw HTML content |
+http_redirect | True if the crawler is redirected to other domain name | 
+http_redirect_count | \# of followed redirects  | 
+http_redirect_chain | Chain of all domains in case of redirects  | 
+http_redirect_https | True if redirected from unsecure to secure  | 
+http_redirect_social | True if redirected to know social media service  | 
+http_redirect_tld | True if the final TLD <\> start TLD | 
+tld_start | The TLD of the start domain name   | 
+tld_end | The TLD of the final domain name   | 
+html_links_all | \# of links on the page  | 
+html_links_int | \# of internal links on the page  | 
+html_links_ext | \# of external links on the page  | 
+html_links_img |  \# of images with links on the page  | 
+html_frame_count | \# of frames on the page  | 
+app_cms | The CMS software used  | 
+app_forum | The forum software used  | 
+app_shopping_cart | The shopping cart software used  | 
+parking_provider | Name of the parking provider, if domain name is parked  | 
+stats_word_count | \# words, exl HTML  | 
+trust_mark | Detected trustmarks  | 
+sec_http_hsts | Strict-Transport-Security header value  | 
+sec_pub_key_pin | Public-Key-Pins header value  | 
+sec_pub_key_pin_report | Public-Key-Pins-Report-Only header value  | 
+sec_content_sec_pol | Content-Security-Policy header value  | 
+html_spider_blocked | True if the page blocks spiders/robots  | 
+cookie_count | \# of cookies set  | 
+cookie_persistent_count | \# of persistent cookies set  | 
+privacy_policy | True if privacy policy is found  | 
+bus_coc_no | Chamber of commerce number  | 
+bus_vat_no | VAT number  | 
+bus_bank_no | Bank account number  | 
+bus_bic_no | Bank BIC number  | 
+bus_phone_no | Telephone number  | 
+bus_address | Visiting or Postal address  | 
+
+
+#### JSON loadtime
+The crawler may be redirected while crawling a domain name, this JSON object contains the following attributes for every crawledcURL.  
+
+- URL
+- Crawl status
+- Type (index, redirect, additional or frame)
+- Loadtime 
+
+__example__   
+```
+[{
+    "url": "http://www.sidn.nl",
+    "status": "OK",
+    "type": "index",
+    "time": 99
+},{
+    "url": "https://www.sidn.nl/",
+    "status": "OK",
+    "type": "redirect",
+    "time": 42
+},{
+    "url": "https://www.googletagmanager.com/ns.html?id=GTM-PRWVJQ&nojscript=true",
+    "status": "BLOCKED_DOMAIN",
+    "type": "frame",
+    "time": 0
+},{
+    "url": "https://www.sidn.nl/a/over-sidn/contact",
+    "status": "OK",
+    "type": "additional",
+    "time": 272
+}]
+```
+
+#### JSON HTTP headers
+All HTTP headers are in a JSON object where the key is the header name and the value the header value.  
+
+__example__   
+```
+{
+   "date": "Mon, 30 Apr 2018 06:11:16 GMT",
+   "server": "Apache",
+   "set-cookie": "dmid=cf0d57c3-2f54-4274-ae4f-1cd4b3d9803d;",
+   "keep-alive": "timeout=5, max=100",
+   "x-content-type-options": "nosniff",
+   "x-xss-protection": "1; mode=block",
+   "vary": "Accept-Encoding",
+   "x-frame-options": "SAMEORIGIN",
+   "content-type": "text/html;charset=UTF-8",
+   "connection": "Keep-Alive",
+   "strict-transport-security": "max-age=15768000; includeSubDomains"
+}
+```
+
+
+ 
+### crawl_result_tls
+The table __crawl_result_tls__ contains information about the TLS certificate.  
+
+__Attribute__ | __Description__
+--- | --- | ---
+domainname | input domain name | 
+crawl_run | Crawl run identifier | 
+ip_version | IP version used, 4 or 6 | 
+tls_crawl_date | Time the domain name was crawled | 
+tls_crawl_name | Domain name used for crawl (www of apex)  | 
+crawl_status | Result status of crawl, __[see status codes](#crawler-status)__| 
+crawl_retries | \# of tries performed by the crawler | 
+tls_load_time | Total time (ms) spent crawling domain name | 
+tls_crawl_url | Last URL crawled | 
+tls_crawl_domain | domain name that is one level beneath the public suffix | 
+tls_https_status | HTTP status code last URL crawled | 
+tls_http_redirect | True if redirect to other domain name | 
+tls_redirect_count | \# of redirects | 
+tls_bytes_len | Size (\# bytes) of HTTP response, excl headers | 
+tls_sni_error | True if SNI error occurred | 
+tls_connect_error | True if crawler could not connect to secure port | 
+tls_avail | True if certificate found | 
+tls_type | Type of certificate, __[see tls types](#tls-types)__ | 
+tls_wildcard | True if wildcard is used for certificate | 
+tls_verification_ok | True if the certificate chain is valid | 
+tls_hostname_match_ok | True if hostname matches name in certificate | 
+tls_issuer | Issuer common name | 
+tls_issuer_org | Issuer organization name | 
+tls_subject | Subject of the certificate | 
+tls_valid | Is the certificate valid, __[see validity](#tls-validity)__ | 
+tls_start_period | Start of certifcate validity period | 
+tls_end_period |  End of certifcate validity period | 
+tls_sig_alg | Signature algorithm | 
+tls_key_len | Key length | 
+tls_cloudflare | True if certificate is published by Cloudflare | 
+tls_letsencrypt | True if certificate is published by Let's Encrypt | 
+tls_revoked | True if the certificate is revoked | 
+tls_san | True if SAN names are present | 
+tls_san_names | List of SAN names | 
+tls_issuer_chain_len | \# of issuers in the chain | 
+tls_issuer_chain | Issuer chain from certificate to the root | 
+tls_root_trusted | True if the root certificate is not trusted | 
+tls_cert_hash | SHA-256 hash of the certificate | 
+
+#### TLS types
+
+ __Value__ | __Description__
+--- | --- | ---
+0 | Unknown | 
+1 | Self signed | 
+2 | Domain validation  | 
+3 | Organization validation | 
+4 | Extended validation |
+
+#### TLS validity
+
+ __Value__ | __Description__
+--- | --- | ---
+0 | Ok | 
+1 | Expired | 
+2 | Not valid yet | 
+
+ 
+### crawl_result_smtp
+The table __crawl_result_smtp__ contains the SMTP crawler results.
+
+__Attribute__ | __Description__
+--- | --- | ---
+domainname | input domain name | 
+crawl_run | Crawl run identifier | 
+ip_version | IP version used, 4 or 6 | 
+smtp_crawl_date | Time the domain name was crawled | 
+crawl_status | Result status of crawl, __[see status codes](#crawler-status)__| 
+crawl_retries | \# of tries performed by the crawler | 
+smtp_count | \# of mail servers found in DNS (MX)  |
+smtp_google | Is Google email service used |
+smtp_responsive | True if all mail servers can be reached |
+smtp_starttls | True if all mail server support STARTTLS |
+smtp_hosts | Mail server details, __[see JSON info](#json-smtp-host)__ |
+
+
+#### JSON SMTP host
+Details for each SMTP host found are written to a list of JSON objects. Each JSON object represents a mail server found in the DNS.  
+
+__Attribute__ | __Description__
+--- | --- | ---
+name | Name (FQDN) of the mail server | 
+priority | MX priority of the server | 
+smtpHostIPs | Mail server IPs and connection info per IP|
+smtpHostIPs.ip | IP address of the server | 
+smtpHostIPs.message | Welcome message received | 
+smtpHostIPs.version | IP version | 
+smtpHostIPs.startTlsEnabled | True if STARTTLS is supported | 
+smtpHostIPs.status | Crawl status, __[see status codes](#crawler-status)__| 
+smtpHostIPs.time | Time (ms) it took to create a connection | 
+
+__example__   
+```
+[{
+    "name": "kamx.sidn.nl",
+    "priority": 5,
+    "smtpHostIPs": [{
+        "ip": "94.198.152.69",
+        "message": "220 mx.example.nl ESMTP Smtpd; Mon, 30 Apr 2018 +0200",
+        "version": 4,
+        "startTlsEnabled": true,
+        "status": "OK",
+        "time": 35
+    }]
+}]
+```
+
+
+### crawl_result_screenshot
+The table __crawl_result_screenshot__ contains the Screenshot crawler results.   
+
+__Attribute__ | __Description__
+--- | --- | ---
+domainname | input domain name | 
+crawl_run | Crawl run identifier | 
+ip_version | IP version used, 4 or 6 | 
+scr_crawl_date | Time the domain name was crawled | 
+crawl_status | Result status of crawl, __[see status codes](#crawler-status)__| 
+crawl_time | Time required to create the screenshot |
+crawl_retries | \# of tries performed by the crawler | 
+scr_url | input URL, domainname and URL are mutally exclusive | 
+scr_crawl_url | The URL used to create the screenshot |
+scr_path | image file directory |
+scr_filename | Filename of the image |
+scr_hist | Color histogram of the image |
+scr_width | Width (pixels) of the image |
+scr_height | Height (pixels) of the image |
+scr_size | Size (bytes) of the image |
+
+### Crawler status
+
+The __crawl_status__ attribute in the result tables contains a integer value, see below for a description of each crawl_status value.
+
+__Value__ | __Description__
+--- | --- | ---
+0 | OK | 
+1 | Malformed URL | 
+2 | Timeout | 
+3 | Unknown host | 
+4 | Network error | 
+5 | IO error | 
+6 | Redirect error | 
+7 | Too many redirects | 
+8 | Blocked domain | 
+9 | Connection refused | 
+10 | TLS protocol error | 
+11| No Response | 
+12| No IPv6 address | 
+13| Content decoding error | 
+14| Empty response | 
+15| No IP address | 
+16| Not authoritative | 
+17| Private IP address | 
+98| Internal classifier error | 
+99| Internal crawler error | 
+100| Other | 
+
+
+Copyright (C) 2018  SIDN Labs ![alt text][logo]
+
+[logo]: http://entrada.sidnlabs.nl/assets/logo-sidn-labs-50px.png 
