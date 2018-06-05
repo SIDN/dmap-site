@@ -42,7 +42,7 @@ Therefore, if you are a reseracher, just do the following:
   
   Want to give at try? Check our [data demo](demo/) page and the  [our data model page](datamodel/) data shows how the results are stored in the SQL database.
   
-##  More information
+##  [Research paper](paper.pdf)
 
 For a full description, please [download our research paper (PDF).](paper.pdf)
 
