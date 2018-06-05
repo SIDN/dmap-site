@@ -1,16 +1,11 @@
 # Dmap Alexa 1M dataset and analysis
-  
-## Notice:
 
-  * Commit date: Tue Feb 27 11:45:47 UTC 2018
 
 ## Goal: 
   * [Dmap][1] is our multi-application measurement tool.
   * In this document, we present the results produced by [Dmap][1] after crawling Alexa 1M domains.
   * In this way, users can reproduce Table III from our [Dmap paper](../paper.pdf) , and understand how to do measurement analysis using simple SQL code.
  
-
-  
   
 ## Requirements:
   * [PostgreSQL DB][3]
