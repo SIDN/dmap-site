@@ -12,11 +12,6 @@ Dmap takes as input a list domain names (entire DNS zones even), and:
 
 Just run it and query it. More details on our [research paper](paper.pdf).
 
-## [Demo data page](demo/)
-
- We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
-Please check our [demo data page](demo/), which provides both data and data model.
-
 
 ## How to get it
  
@@ -24,7 +19,7 @@ We have developed [Dmap](http://dmap.sidnlabs.nl) as a project with [SIDN Labs](
 
 We are more than happy to make Dmap availble for researchers, both code and binaries. We just would not like it to be used commercially. 
 
-Therefore, if you are a reseracher, just do the following:
+Therefore, if you are a researcher, just do the following:
   1. Send a request to sidnlabs at sidn .nl with the following information:
      * Name
      * University/Research Center/Research Group
@@ -34,6 +29,11 @@ Therefore, if you are a reseracher, just do the following:
   1. We will send you our academic license agreement (Modified Apache 2 License)
   1. Once you send it back to us, we will quickly process that and give you full access to our  [GitHub Repository](https://github.com/SIDN/emap).
  
+ 
+## [Demo data page](demo/)
+
+ We have a database dump from Alexa 1M domains, which we cover  our [research paper](paper.pdf).
+Please check our [demo data page](demo/), which provides both data and data model.
  
 ##  [Data Model (from raw data to SQL)](datamodel/)
   Very often, researchers spend an awful lot of time planning and executing measurements. The complexity of different data formats and issues that may emerge drain energy that could be otherwise be spent on research questions.
