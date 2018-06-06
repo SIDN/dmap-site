@@ -309,11 +309,11 @@ page_fingerprint | SHA-256 hash of HTML content  |
 page_text | Text content extracted from HTML |
 page_src | Raw HTML content |
 http_redirect | True if the crawler is redirected to other domain name |
-http_redirect_count | \# of followed redirects  |
+http_redirect_count | # of followed redirects  |
 http_redirect_chain | Chain of all domains in case of redirects  |
 http_redirect_https | True if redirected from unsecure to secure  |
 http_redirect_social | True if redirected to know social media service  |
-http_redirect_tld | True if the final TLD <\> start TLD |
+http_redirect_tld | True if the final TLD is not the start TLD |
 tld_start | The TLD of the start domain name   |
 tld_end | The TLD of the final domain name   |
 html_links_all | # of links on the page  |
@@ -333,7 +333,7 @@ sec_pub_key_pin_report | Public-Key-Pins-Report-Only header value  |
 sec_content_sec_pol | Content-Security-Policy header value  |
 html_spider_blocked | True if the page blocks spiders/robots  |
 cookie_count | # of cookies set  |
-cookie_persistent_count | \# of persistent cookies set  |
+cookie_persistent_count | # of persistent cookies set  |
 privacy_policy | True if privacy policy is found  |
 bus_coc_no | Chamber of commerce number  |
 bus_vat_no | VAT number  |
