@@ -99,14 +99,14 @@
 
 # Data Model
 
-This section contains a description of the relational data model used by Dmap. There are tables that contain reference and configuration information and tables that contain crawler results.
+This section contains a description of the relational data model used by Dmap to store the crawler results.  
 
 ## Result data
 
-Most of the result tables use the following primary key \<domainname,crawl_run,ip_version\>. If both verion 4 and 6 are enabled then every domain name crawl will create 2 rows in the result table, 1 for IPv4 and 1 for IPv6.
+Most of the result tables use the following primary key `domainname,crawl_run,ip_version`. If both verion 4 and 6 are enabled then a domain name crawl will create 2 rows in the result table, 1 for IPv4 and 1 for IPv6.
 
 ### crawl_result_domain
-Table __crawl_result_domain__ contain information related to the domain name itself. This dat is calculated from the name or is supplied to the crawler using the crawler batch input file.
+Table __crawl_result_domain__ contain information related to the domain name itself. This data is derived from the name or it is supplied to the crawler using the crawler batch input file.
 
 __Attribute__ | __Description__
 --- | ---
@@ -222,12 +222,12 @@ __example__
 #### JSON DMARC
 
 A JSON object containing attributes from the DMARC TXT record.
-The "p" and "v" attrites are required, for a complete list of available DMARC attributes, see [IETF RFC 7489 DMARC Policy Record](https://tools.ietf.org/html/rfc7489#section-6.1)
+The `p` and `v` attrites are required, for a complete list of available DMARC attributes, see [IETF RFC 7489 DMARC Policy Record](https://tools.ietf.org/html/rfc7489#section-6.1)
 
 __Attribute__ | __Description__
 --- | ---
 p | Policy to use for flagged email |
-v | Always "DMARC1" |
+v | Always `DMARC1` |
 rua | Addresses for aggregate feedback |
 ruf |  Addresses for which message-specific failure information |
 
@@ -283,8 +283,8 @@ crawl_domain | domain name that is one level beneath the public suffix |
 crawl_url | Last URL crawled |
 crawl_date | Date the crawl was executed |
 crawl_status | Result status of crawl, __[see status codes](#crawler-status)__|
-crawl_pages | \# of URLs crawled for domain name |
-crawl_retries | \# of tries performed by the crawler |
+crawl_pages | # of URLs crawled for domain name |
+crawl_retries | # of tries performed by the crawler |
 network_load_time | Total time (ms) spent crawling domain name |
 network_load_time_all | Time spent (ms) crawling per URL, __[see JSON](#json-loadtime)__ |
 http_status | HTTP result status |
@@ -309,31 +309,31 @@ page_fingerprint | SHA-256 hash of HTML content  |
 page_text | Text content extracted from HTML |
 page_src | Raw HTML content |
 http_redirect | True if the crawler is redirected to other domain name |
-http_redirect_count | \# of followed redirects  |
+http_redirect_count | # of followed redirects  |
 http_redirect_chain | Chain of all domains in case of redirects  |
 http_redirect_https | True if redirected from unsecure to secure  |
 http_redirect_social | True if redirected to know social media service  |
-http_redirect_tld | True if the final TLD <\> start TLD |
+http_redirect_tld | True if the final TLD is not the start TLD |
 tld_start | The TLD of the start domain name   |
 tld_end | The TLD of the final domain name   |
-html_links_all | \# of links on the page  |
-html_links_int | \# of internal links on the page  |
-html_links_ext | \# of external links on the page  |
-html_links_img |  \# of images with links on the page  |
-html_frame_count | \# of frames on the page  |
+html_links_all | # of links on the page  |
+html_links_int | # of internal links on the page  |
+html_links_ext | # of external links on the page  |
+html_links_img | # of images with links on the page  |
+html_frame_count | # of frames on the page  |
 app_cms | The CMS software used  |
 app_forum | The forum software used  |
 app_shopping_cart | The shopping cart software used  |
 parking_provider | Name of the parking provider, if domain name is parked  |
-stats_word_count | \# words, exl HTML  |
+stats_word_count | # of words, exl HTML tags |
 trust_mark | Detected trustmarks  |
 sec_http_hsts | Strict-Transport-Security header value  |
 sec_pub_key_pin | Public-Key-Pins header value  |
 sec_pub_key_pin_report | Public-Key-Pins-Report-Only header value  |
 sec_content_sec_pol | Content-Security-Policy header value  |
 html_spider_blocked | True if the page blocks spiders/robots  |
-cookie_count | \# of cookies set  |
-cookie_persistent_count | \# of persistent cookies set  |
+cookie_count | # of cookies set  |
+cookie_persistent_count | # of persistent cookies set  |
 privacy_policy | True if privacy policy is found  |
 bus_coc_no | Chamber of commerce number  |
 bus_vat_no | VAT number  |
@@ -409,14 +409,14 @@ ip_version | IP version used, 4 or 6 |
 tls_crawl_date | Time the domain name was crawled |
 tls_crawl_name | Domain name used for crawl (www of apex)  |
 crawl_status | Result status of crawl, __[see status codes](#crawler-status)__|
-crawl_retries | \# of tries performed by the crawler |
+crawl_retries | # of tries performed by the crawler |
 tls_load_time | Total time (ms) spent crawling domain name |
 tls_crawl_url | Last URL crawled |
 tls_crawl_domain | domain name that is one level beneath the public suffix |
 tls_https_status | HTTP status code last URL crawled |
 tls_http_redirect | True if redirect to other domain name |
-tls_redirect_count | \# of redirects |
-tls_bytes_len | Size (\# bytes) of HTTP response, excl headers |
+tls_redirect_count | # of redirects |
+tls_bytes_len | Size (# of bytes) of HTTP response, excl headers |
 tls_sni_error | True if SNI error occurred |
 tls_connect_error | True if crawler could not connect to secure port |
 tls_avail | True if certificate found |
@@ -437,7 +437,7 @@ tls_letsencrypt | True if certificate is published by Let's Encrypt |
 tls_revoked | True if the certificate is revoked |
 tls_san | True if SAN names are present |
 tls_san_names | List of SAN names |
-tls_issuer_chain_len | \# of issuers in the chain |
+tls_issuer_chain_len | # of issuers in the chain |
 tls_issuer_chain | Issuer chain from certificate to the root |
 tls_root_trusted | True if the root certificate is not trusted |
 tls_cert_hash | SHA-256 hash of the certificate |
@@ -471,8 +471,8 @@ crawl_run | Crawl run identifier |
 ip_version | IP version used, 4 or 6 |
 smtp_crawl_date | Time the domain name was crawled |
 crawl_status | Result status of crawl, __[see status codes](#crawler-status)__|
-crawl_retries | \# of tries performed by the crawler |
-smtp_count | \# of mail servers found in DNS (MX)  |
+crawl_retries | # of tries performed by the crawler |
+smtp_count | # of mail servers found in DNS (MX)  |
 smtp_google | Is Google email service used |
 smtp_responsive | True if all mail servers can be reached |
 smtp_starttls | True if all mail server support STARTTLS |
@@ -522,7 +522,7 @@ ip_version | IP version used, 4 or 6 |
 scr_crawl_date | Time the domain name was crawled |
 crawl_status | Result status of crawl, __[see status codes](#crawler-status)__|
 crawl_time | Time required to create the screenshot |
-crawl_retries | \# of tries performed by the crawler |
+crawl_retries | # of tries performed by the crawler |
 scr_url | input URL, domainname and URL are mutally exclusive |
 scr_crawl_url | The URL used to create the screenshot |
 scr_path | image file directory |
@@ -548,7 +548,7 @@ __Value__ | __Description__
 7 | Too many redirects |
 8 | Blocked domain |
 9 | Connection refused |
-10 | TLS protocol error |
+10 | Protocol error |
 11| No Response |
 12| No IPv6 address |
 13| Content decoding error |
