@@ -102,24 +102,24 @@
         ## Obtaining it [DMap][1]
 
           1. **Why isn't [DMap][1] also open for non researchers?**
-             * Our decision on open-source [DMap][1] for researchers is to help them in carrying out the complex measurements and free them to answer their research questions. Companies and commercial parties have at their disposal other tools and services (or they can also develop their own); we just do not want to be used for commercial goals.
+             * Our decision to maken [DMap][1] avaiable for for researchers only is to help them in carrying out the complex measurements and free them to answer their research questions. Companies and other commercial parties have at their disposal other tools and services (or they can develop their own); we just do not want Dmap to be used for commercial purposes.
           1. **Where is [DMap][1]'s documentation?**
              * At its [GitHub Repository][2]. However, you'll need access to the the Github repository first (see question 3).
           1. **How can I clone [DMap][1]?**
              * First we need to send us a request.  Fill the [following form][5] and you will receive an e-mail from us with the instructions.
           1. **Why do I need to use my university/research center e-mail address**?
-             * It makes it easy for us to know if you are researcher. In the end, we will use the Github account you provided to grant you access to the [Github repository][2].
+             * It makes it easier for us to verify that you are researcher. In the end, we will use the Github account you provided to grant you access to the [Github repository][2].
 
          ## Architecture/Usage
           1. **Is [DMap][1] a stand-alone application like `nmap` or `zmap`?**
-             * No. It's an  distributed RESTFul web application that you can as a single `jar` file. See [our research paper][3] for more.
+             * No. It's an  distributed RESTFul web application that you deploy either as a simple `jar` file on a single machine, or run on multiple machines in a cluster. See [our research paper][3] for more.
           1. **Can I scan IP addresses with [DMap][1]?**
-             * No. It uses a csv file as input contaning domain names. See [our research paper][3] for more.
+             * No. It uses a domain name as its starting point. See [our research paper][3] for more.
 
         ## Requirements:
 
           1. **What is the minimum setup do I need to run [DMap][1]?**
-             * You can run its components either distributed or on a single machine. The minimum configuration depends on how fast you want to crawl the domains (number of threads, number of crawlers active). A small VM should be suffice for most cases. If you are considering crawling million of domains, please consider a more robust scenario. In our setup, [we crawled 1 million domains/day][3], using a single virtual machine with 8x 1.4GHz CPU cores, with 32GB of RAM and a shared 1Gbps line, and 6 crawlers (no screenshots), with 300 crawler threads, and 50 classifier threads.
+             * You can run its components either distributed or on a single machine. The minimum configuration depends on how fast you want to crawl the domains (number of threads, number of crawlers active, cache size). A small VM should be suffice for most cases. If you are considering crawling million of domains, please consider a more robust scenario. In our setup, [we crawled 1 million domains/day][3], using a single virtual machine with 8x 1.4GHz CPU cores, with 32GB of RAM and a shared 1Gbps line, and 6 crawlers (no screenshots), with 300 crawler threads, and 50 classifier threads.
 
 
 
