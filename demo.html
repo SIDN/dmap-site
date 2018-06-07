@@ -110,13 +110,14 @@
 
 ## 1. Download the data and set it up
 
-   * You can download the Postgresql database dump (result tables only): [this link](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
+   * You can download the Postgresql database dump (result tables only):
           * File: [pg_dump_export_20180227.zip](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
           * `ms5sum: b5a248deace64fed2931df97908d39a5`
    * Then install it at your already configured [PostgreSQL DB][3] using the following command:
 
 
 ```bash
+# steps to import pg_dump_export_20180227.zip into PostgreSQL
 # unzip file
 $ unzip  pg_dump_export_20180227.zip
 
