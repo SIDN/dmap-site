@@ -110,7 +110,8 @@
 
 ## 1. Download the data and set it up
 
-   * You can download the Postgresql database dump with results from [this link](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
+   * You can download the Postgresql database dump (result tables only): [this link](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
+          * File: [pg_dump_export_20180227.zip](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
           * `ms5sum: b5a248deace64fed2931df97908d39a5`
    * Then install it at your already configured [PostgreSQL DB][3] using the following command:
 
@@ -129,6 +130,7 @@ $ psql DMapdb < pg_dump_export_20180227
 ## 2. DNS
 
    * From this point onwards, we show the results of Table III in the paper, and which queries/python code we use to obtain these numbers
+   * **Reference**: check the [data model](datamodel.html) for a description of each column.
 
 
 #### 2.1 DNS results from Table III in [Dmap paper][2]:
@@ -146,7 +148,7 @@ $ psql DMapdb < pg_dump_export_20180227
 
 *IMPORTANT:*  crawl_run=67 is a ID of this entire measurment, and it' s a fixed value in all queries here.
 
-```sqlite-psql
+```sql
 --Domains (OK)
 
 --IPv4(crawl_status=0 means no error during crawling)
@@ -248,7 +250,7 @@ select count(domainname) from  crawl_result_dns
 
 
 ### 3.3 HTTP SQL queries
-```sqlite-psql
+```sql
 
 --IPv4(crawl_status=0 no error)
 select count(1) from crawl_result_http
@@ -330,7 +332,7 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 
 
 
-```sqlite-psql
+```sql
 ---Domains (OK) (IPV4/IPV60
 
 select count(1)  from  crawl_result_tls   where
@@ -371,7 +373,7 @@ and ip_version=6 and tls_letsencrypt=True
    * Here is part of the queries, for the remaining see the [smtpstats.py][4].
 
 
-```sqlite-psql
+```sql
  --domains (OK), IPv4 and IPv6:
 
   select count(domainname) from crawl_result_smtp
