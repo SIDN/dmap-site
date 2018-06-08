@@ -108,7 +108,7 @@
   * Any SQL client that can connect to postgresql
   * Check the data model to understand the results on the [Data model page](datamodel.html)
 
-## 1. Download the data and set it up
+## Download the data and set it up
 
    * You can download the Postgresql database dump (result tables only):
           * File: [pg_dump_export_20180227.zip](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
@@ -128,13 +128,13 @@ $ createdb -T template0 DMapdb
 $ psql DMapdb < pg_dump_export_20180227
 ```
 
-## 2. DNS
+##  DNS
 
    * From this point onwards, we show the results of Table III in the paper, and which queries/python code we use to obtain these numbers
    * **Reference**: check the [data model](datamodel.html) for a description of each column.
 
 
-#### 2.1 DNS results from Table III in [Dmap paper][2]:
+###   DNS results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -144,7 +144,7 @@ $ psql DMapdb < pg_dump_export_20180227
 |# Unique ASes |18,418|3,178 |0.17|
 |# CDN Cloudflare |117,538|115,396 |0.98|
 
-#### 2.2 SQL queries to obtain these results
+### SQL queries to obtain these results
 
 
 *IMPORTANT:*  crawl_run=67 is a ID of this entire measurment, and it' s a fixed value in all queries here.
@@ -235,9 +235,9 @@ select count(domainname) from  crawl_result_dns
 ```
 
 
-## 3. HTTP
+##  HTTP
 
-### 3.1 HTTP results from Table III in [Dmap paper][2]:
+###  HTTP results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -250,7 +250,7 @@ select count(domainname) from  crawl_result_dns
 
 
 
-### 3.3 HTTP SQL queries
+###   HTTP SQL queries
 ```sql
 
 --IPv4(crawl_status=0 no error)
@@ -318,10 +318,10 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
  and crawl_status=0
 ```
 
-## 4.TLS
+##  TLS
 
 
-### 4.1 DNS results from Table III in [Dmap paper][2]:
+###   DNS results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -329,7 +329,7 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 |# Let’s Encrypt |165,526|10,466|0.06|
 
 
-### 4.2 TLS SQL queries
+###  TLS SQL queries
 
 
 
@@ -353,9 +353,9 @@ select count(1)  from  crawl_result_tls   where crawl_run=67
 and ip_version=6 and tls_letsencrypt=True
 ```
 
-## 5. SMTP
+##   SMTP
 
-### 5.1 SMTP results from Table III in [DMap paper][2]:
+###   SMTP results from Table III in [DMap paper][2]:
 
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
@@ -367,7 +367,7 @@ and ip_version=6 and tls_letsencrypt=True
 
 
 
-### 5.2 STMP SQL queries
+###  STMP SQL queries
 
   * For  StartTLS query support, we did not write the JSON queries, but a python script. Please [download it here][4] and run it, and obtain all results for SMTP.
 
