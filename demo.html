@@ -202,7 +202,7 @@ and ip_version = 6
 and crawl_status = 0
 and crawl_run = 67)as ns_names
 
---- unique ASes (Ipv4)
+--- unique ASes (IPv4)
 
 select count( distinct uq_as)
 from (select json_array_elements((jsonb_array_elements(dns_ns)->>'addresses')::json)->>'asn' as uq_as
@@ -385,7 +385,7 @@ and ip_version=6 and tls_letsencrypt=True
       where crawl_run=67 and ip_version=6 and
       crawl_status=0 and smtp_count>0
 
- --unique SMTP (Ipv4, IPv6):
+ --unique SMTP (IPv4, IPv6):
 
 WITH smtp_hosts AS (
    select lower(json_array_elements(smtp_hosts::json)->>'name') as host
@@ -398,7 +398,7 @@ WITH smtp_hosts AS (
 select count(distinct host)
 from smtp_hosts
 
- --unique SMTP (Ipv6):
+ --unique SMTP (IPv6):
 
 WITH smtp_hosts AS (
    select lower(json_array_elements(smtp_hosts::json)->>'name') as host
