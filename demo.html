@@ -192,7 +192,7 @@ and ip_version = 6
 and crawl_status = 0
 and crawl_run = 67)as ns_names
 
--- unique NSes (IPV6)
+-- unique NSes (IPv6)
 
 select count( distinct lower(ns_name))
 from (select jsonb_array_elements(dns_ns)->>'name' as ns_name
@@ -212,7 +212,7 @@ and ip_version = 4
 and crawl_status = 0
 and crawl_run = 67)as ases
 
---- unique ASes (ipv6)
+--- unique ASes (IPv6)
 
 select count( distinct uq_as)
 from (select json_array_elements((jsonb_array_elements(dns_ns)->>'addresses')::json)->>'asn' as uq_as
@@ -263,19 +263,19 @@ select count(1) from crawl_result_http
 where crawl_run=67 and ip_version=6
 and crawl_status=0
 
----- html 5 (ipv4)
+---- html 5 (IPv4)
 
 select html_version, count(1) as df from crawl_result_http
 where crawl_run=67 and ip_version=4  and http_status=200
  and crawl_status=0 group by html_version
 
----- html 5 (ipv6)
+---- html 5 (IPv6)
 select html_version, count(1) as df from crawl_result_http
  where crawl_run=67 and ip_version=6  and crawl_status=0
  and http_status=200  group by html_version
 
 
----median bytes len (IPv4/IPV6)
+---median bytes len (IPv4/IPv6)
 
 SELECT PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER by http_bytes_len)
  FROM crawl_result_http   where crawl_run=67 and ip_version=4
@@ -286,7 +286,7 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 and crawl_status=0  and http_status=200
 
 
----internal links  (IPv4/IPV6)
+---internal links  (IPv4/IPv6)
 
 SELECT PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER by html_links_int)
 FROM crawl_result_http   where crawl_run=67 and ip_version=4 and
@@ -296,7 +296,7 @@ SELECT PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER by html_links_int)
 FROM crawl_result_http   where crawl_run=67 and ip_version=6
 sand crawl_status=0  and http_status=200
 
---- external links  (IPv4/IPV6)
+--- external links  (IPv4/IPv6)
 
 SELECT PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER by html_links_ext)
 FROM crawl_result_http   where crawl_run=67 and ip_version=4
@@ -307,7 +307,7 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 and crawl_status=0  and http_status=200
 
 
----cookie count (IPv4/IPV6)
+---cookie count (IPv4/IPv6)
 
 SELECT PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER by cookie_count)
 FROM crawl_result_http   where crawl_run=67 and ip_version=4
@@ -334,7 +334,7 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 
 
 ```sql
----Domains (OK) (IPV4/IPV60
+---Domains (OK) (IPv4/IPv60
 
 select count(1)  from  crawl_result_tls   where
  crawl_run=67 and ip_version=4 and crawl_status=0
@@ -344,7 +344,7 @@ select count(1)  from  crawl_result_tls   where
 crawl_run=67 and ip_version=6 and crawl_status=0
 and tls_avail=true
 
---- Let's Encrypt  (IPV4/IPV60
+--- Let's Encrypt  (IPv4/IPv60
 
 select count(1)  from  crawl_result_tls   where crawl_run=67
 and ip_version=4 and tls_letsencrypt=True
