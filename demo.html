@@ -78,8 +78,8 @@
 
         <nav>
           <markdeep>
-            <a href="https://goo.gl/forms/RM09ZRPSyl2iblT22l">Get it</a>
-            <a href="demo.html">Demo data (SQL)</a>
+            <a href="https://goo.gl/forms/RM09ZRPSyl2iblT22">Get it</a>
+            <a href="demo.html">Demo dataset (SQL)</a>
             <a href="datamodel.html">Data Model</a>
             <a href="faq.html">F.A.Q.</a>
             <a href="paper.pdf" target="_blank">Research Paper</a>
@@ -96,12 +96,11 @@
 
       <markdeep>
 
-# Dmap Alexa 1M data demo page
+# Dmap Alexa 1M  dataset
 
 
-  * [Dmap][1] is our multi-application measurement tool.
   * In this document, we present the results produced by [Dmap][1] after crawling Alexa 1M domains
-  * In this way, users can reproduce Table III from our [Dmap paper](paper.pdf) , and understand how to do measurement analysis using simple SQL code.
+  * We present the SQL code (and Python) used to obtain the results from Table III from our [Dmap paper](paper.pdf).
 
 
 ## Requirements:
@@ -109,14 +108,16 @@
   * Any SQL client that can connect to postgresql
   * Check the data model to understand the results on the [Data model page](datamodel.html)
 
-## 1. Download the data and set it up
+## Download the data and set it up
 
-   * You can download the Postgresql database dump with results from [this link](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
+   * You can download the Postgresql database dump (result tables only):
+          * File: [pg_dump_export_20180227.zip](https://s3.eu-central-1.amazonaws.com/dmap-pgdump/pg_dump_export_20180227.zip).
           * `ms5sum: b5a248deace64fed2931df97908d39a5`
    * Then install it at your already configured [PostgreSQL DB][3] using the following command:
 
 
 ```bash
+# steps to import pg_dump_export_20180227.zip into PostgreSQL
 # unzip file
 $ unzip  pg_dump_export_20180227.zip
 
@@ -127,12 +128,13 @@ $ createdb -T template0 DMapdb
 $ psql DMapdb < pg_dump_export_20180227
 ```
 
-## 2. DNS
+##  DNS
 
    * From this point onwards, we show the results of Table III in the paper, and which queries/python code we use to obtain these numbers
+   * **Reference**: check the [data model](datamodel.html) for a description of each column.
 
 
-#### 2.1 DNS results from Table III in [Dmap paper][2]:
+###   DNS results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -142,12 +144,12 @@ $ psql DMapdb < pg_dump_export_20180227
 |# Unique ASes |18,418|3,178 |0.17|
 |# CDN Cloudflare |117,538|115,396 |0.98|
 
-#### 2.2 SQL queries to obtain these results
+### SQL queries to obtain these results
 
 
 *IMPORTANT:*  crawl_run=67 is a ID of this entire measurment, and it' s a fixed value in all queries here.
 
-```sqlite-psql
+```sql
 --Domains (OK)
 
 --IPv4(crawl_status=0 means no error during crawling)
@@ -200,7 +202,7 @@ and ip_version = 6
 and crawl_status = 0
 and crawl_run = 67)as ns_names
 
---- unique ASes (Ipv4)
+--- unique ASes (IPv4)
 
 select count( distinct uq_as)
 from (select json_array_elements((jsonb_array_elements(dns_ns)->>'addresses')::json)->>'asn' as uq_as
@@ -210,7 +212,7 @@ and ip_version = 4
 and crawl_status = 0
 and crawl_run = 67)as ases
 
---- unique ASes (ipv6)
+--- unique ASes (IPv6)
 
 select count( distinct uq_as)
 from (select json_array_elements((jsonb_array_elements(dns_ns)->>'addresses')::json)->>'asn' as uq_as
@@ -233,9 +235,9 @@ select count(domainname) from  crawl_result_dns
 ```
 
 
-## 3. HTTP
+##  HTTP
 
-### 3.1 HTTP results from Table III in [Dmap paper][2]:
+###  HTTP results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -248,8 +250,8 @@ select count(domainname) from  crawl_result_dns
 
 
 
-### 3.3 HTTP SQL queries
-```sqlite-psql
+###   HTTP SQL queries
+```sql
 
 --IPv4(crawl_status=0 no error)
 select count(1) from crawl_result_http
@@ -261,13 +263,13 @@ select count(1) from crawl_result_http
 where crawl_run=67 and ip_version=6
 and crawl_status=0
 
----- html 5 (ipv4)
+---- html 5 (IPv4)
 
 select html_version, count(1) as df from crawl_result_http
 where crawl_run=67 and ip_version=4  and http_status=200
  and crawl_status=0 group by html_version
 
----- html 5 (ipv6)
+---- html 5 (IPv6)
 select html_version, count(1) as df from crawl_result_http
  where crawl_run=67 and ip_version=6  and crawl_status=0
  and http_status=200  group by html_version
@@ -316,10 +318,10 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
  and crawl_status=0
 ```
 
-## 4.TLS
+##  TLS
 
 
-### 4.1 DNS results from Table III in [Dmap paper][2]:
+###   DNS results from Table III in [Dmap paper][2]:
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
 | --------| ------|-------| ----------|
@@ -327,12 +329,12 @@ FROM crawl_result_http   where crawl_run=67 and ip_version=6
 |# Let’s Encrypt |165,526|10,466|0.06|
 
 
-### 4.2 TLS SQL queries
+###  TLS SQL queries
 
 
 
-```sqlite-psql
----Domains (OK) (IPV4/IPV60
+```sql
+---Domains (OK) (IPv4/IPv6)
 
 select count(1)  from  crawl_result_tls   where
  crawl_run=67 and ip_version=4 and crawl_status=0
@@ -342,7 +344,7 @@ select count(1)  from  crawl_result_tls   where
 crawl_run=67 and ip_version=6 and crawl_status=0
 and tls_avail=true
 
---- Let's Encrypt  (IPV4/IPV60
+--- Let's Encrypt  (IPv4/IPv6)
 
 select count(1)  from  crawl_result_tls   where crawl_run=67
 and ip_version=4 and tls_letsencrypt=True
@@ -351,9 +353,9 @@ select count(1)  from  crawl_result_tls   where crawl_run=67
 and ip_version=6 and tls_letsencrypt=True
 ```
 
-## 5. SMTP
+##   SMTP
 
-### 5.1 SMTP results from Table III in [DMap paper][2]:
+###   SMTP results from Table III in [DMap paper][2]:
 
 
 |*Metric* |*IPv4* |*IPv6* |*IPv6/IPv4*|
@@ -365,14 +367,14 @@ and ip_version=6 and tls_letsencrypt=True
 
 
 
-### 5.2 STMP SQL queries
+###  STMP SQL queries
 
   * For  StartTLS query support, we did not write the JSON queries, but a python script. Please [download it here][4] and run it, and obtain all results for SMTP.
 
    * Here is part of the queries, for the remaining see the [smtpstats.py][4].
 
 
-```sqlite-psql
+```sql
  --domains (OK), IPv4 and IPv6:
 
   select count(domainname) from crawl_result_smtp
@@ -383,7 +385,7 @@ and ip_version=6 and tls_letsencrypt=True
       where crawl_run=67 and ip_version=6 and
       crawl_status=0 and smtp_count>0
 
- --unique SMTP (Ipv4, IPv6):
+ --unique SMTP (IPv4, IPv6):
 
 WITH smtp_hosts AS (
    select lower(json_array_elements(smtp_hosts::json)->>'name') as host
@@ -396,7 +398,7 @@ WITH smtp_hosts AS (
 select count(distinct host)
 from smtp_hosts
 
- --unique SMTP (Ipv6):
+ --unique SMTP (IPv6):
 
 WITH smtp_hosts AS (
    select lower(json_array_elements(smtp_hosts::json)->>'name') as host
