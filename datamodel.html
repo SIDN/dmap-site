@@ -480,35 +480,45 @@ smtp_hosts | Mail server details, __[see JSON info](#json-smtp-host)__ |
 
 
 #### JSON SMTP host
-Details for each SMTP host found are written to a list of JSON objects. Each JSON object represents a mail server found in the DNS.
+Details for each SMTP host found are written to a list of JSON objects. Each JSON object represents a mail server found in the DNS.  
 
 __Attribute__ | __Description__
---- | --- 
-name | Name (FQDN) of the mail server |
-priority | MX priority of the server |
-smtpHostIPs | Mail server IPs and connection info per IP|
-smtpHostIPs.ip | IP address of the server |
-smtpHostIPs.message | Welcome message received |
-smtpHostIPs.version | IP version |
-smtpHostIPs.startTlsEnabled | True if STARTTLS is supported |
-smtpHostIPs.status | Crawl status, __[see status codes](#crawler-status)__|
-smtpHostIPs.time | Time (ms) it took to create a connection |
+--- | --- | ---
+name | Name (FQDN) of the mail server 
+priority | MX priority of the server   
+smtpHostIPs | Mail server IPs and connection info per IP
+smtpHostIPs.server | Server name from welcome message
+smtpHostIPs.connectOk | True if connection was successful
+smtpHostIPs.connectReplyCode | Reply code received after connect
+smtpHostIPs.ip | IP address of the server 
+smtpHostIPs.banner | Welcome message received from server
+smtpHostIPs.ipVersion | IP version 
+smtpHostIPs.startTlsOk | True if STARTTLS is supported 
+smtpHostIPs.startTlsReplyCode | Reply code received after STARTTLS command
+smtpHostIPs.status | Crawl status, __[see status codes](#crawler-status)__
+smtpHostIPs.time | Time (ms) it took to create a connection   
+smtpHostIPs.additional | Additional data added by classifiers
 
-__example__
+__example__   
 ```
 [{
-    "name": "kamx.sidn.nl",
-    "priority": 5,
-    "smtpHostIPs": [{
-        "ip": "94.198.152.69",
-        "message": "220 mx.example.nl ESMTP Smtpd; Mon, 30 Apr 2018 +0200",
-        "version": 4,
-        "startTlsEnabled": true,
-        "status": "OK",
-        "time": 35
-    }]
+    "server": "example.nl",
+    "connectOk": true,
+    "connectReplyCode": 220,
+    "ip": "188.93.148.123",
+    "banner": "220 example.nl ESMTP Exim 134224 Wed, 20 Jun 2018",
+    "ipVersion": 4,
+    "startTlsOk": true,
+    "startTlsReplyCode": 220,
+    "status": "OK",
+    "time": 89,
+    "additional": {
+        "software": "Exim",
+        "softwareVersion": "134224"
+    }
 }]
 ```
+
 
 
 ### crawl_result_screenshot
