@@ -501,22 +501,27 @@ smtpHostIPs.additional | Additional data added by classifiers
 
 __example__   
 ```
-[{
-    "server": "example.nl",
+{
+  "name": "mx.xample.nl",
+  "priority": 5,
+  "ips": [{
+    "server": "mx.xample.nl",
     "connectOk": true,
     "connectReplyCode": 220,
-    "ip": "188.93.148.123",
-    "banner": "220 example.nl ESMTP Exim 134224 Wed, 20 Jun 2018",
+    "ip": "188.93.148.111",
+    "banner": "220 mx.xample.nl ESMTP Exim 135189 Wed, 20 Jun 2018",
     "ipVersion": 4,
     "startTlsOk": true,
     "startTlsReplyCode": 220,
     "status": "OK",
-    "time": 89,
+    "time": 167,
     "additional": {
-        "software": "Exim",
-        "softwareVersion": "134224"
+      "software": "Exim",
+      "softwareVersion": "135189"
     }
-}]
+
+  }]
+}
 ```
 
 
