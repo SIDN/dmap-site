@@ -101,6 +101,13 @@
 
 This section contains a description of the relational data model used by Dmap to store the crawler results.  
 
+**IMPORTANT: data model changes (2018-08-20)**
+
+    * We keep improving Dmap continuously. As such, there are some changes from the version described   on our [research paper](paper.pdf).
+    * More importantly, the [data model](datamodel) page in this website *refers to the model used in the [research paper](paper.pdf).*
+    * The data model used in the the current version can always be found updated on our [Github site][2] (don't have access? Fill in the [form][5])
+
+
 ## Result data
 
 Most of the result tables use the following primary key `domainname,crawl_run,ip_version`. If both verion 4 and 6 are enabled then a domain name crawl will create 2 rows in the result table, 1 for IPv4 and 1 for IPv6.
@@ -577,6 +584,10 @@ __Value__ | __Description__
 
 
 Copyright (C) 2018  SIDN Labs
+
+[5]: https://goo.gl/forms/RM09ZRPSyl2iblT22
+[2]: https://github.com/SIDN/dmap
+
 
 
       </markdeep>
